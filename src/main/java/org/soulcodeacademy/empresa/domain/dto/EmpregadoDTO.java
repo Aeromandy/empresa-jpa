@@ -21,9 +21,8 @@ public class EmpregadoDTO {
     @Min(value = 3000, message = "campo salário inválido")
     private Double salario;
 
-    @NotNull(message = "O campo idEndereco é obrigatório")
+    @NotNull
     private Integer idEndereco;
-
 
     private Integer idProjeto;
 

@@ -11,7 +11,7 @@ public class ProjetoDTO {
     @NotBlank(message = "Nome é obrigatório")
     private String nome;
 
-    @NotBlank(message = "Orçamento é obrigatório")
+    @NotNull(message = "Orçamento é obrigatório")
     private Double orcamento;
 
 

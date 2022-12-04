@@ -4,7 +4,6 @@ import javax.validation.constraints.NotNull;
 
 public class DependenteDTO {
 
-
     private Integer idDependente;
 
     private Integer idade;

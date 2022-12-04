@@ -23,6 +23,9 @@ public class EmpregadoService {
     @Autowired
     private ProjetoService projetoService;
 
+    @Autowired
+    private DependenteService dependenteService;
+
     public List<Empregado> listar() {
 
         return this.empregadoRepository.findAll();
@@ -46,5 +49,30 @@ public class EmpregadoService {
         Projeto projeto = this.projetoService.getProjeto(idProjeto);
         empregado.getProjetos().add(projeto);
         return this.empregadoRepository.save(empregado);
+    }
+
+    public Empregado salvar(EmpregadoDTO dto) {
+        Empregado empregado = new Empregado(null, dto.getNome(), dto.getEmail(), dto.getSalario());
+        Endereco salvo = this.enderecoService.getEndereco(dto.getIdEndereco());
+        empregado.setEndereco(salvo);
+        Empregado empregadosalvo = this.empregadoRepository.save(empregado);
+
+        return empregadosalvo;
+    }
+
+    public Empregado atualizar(Integer idEmpregado, EmpregadoDTO dto) {
+        Empregado empregadoAtual = this.getEmpregado(idEmpregado);
+
+        empregadoAtual.setNome(dto.getNome());
+        empregadoAtual.setEmail(dto.getEmail());
+        empregadoAtual.setSalario(dto.getSalario());
+
+        Empregado atualizado = this.empregadoRepository.save(empregadoAtual);
+        return atualizado;
+    }
+
+    public void deletar(Integer idEmpregado) {
+        Empregado empregado = this.getEmpregado(idEmpregado);
+        this.empregadoRepository.delete(empregado);
     }
 }

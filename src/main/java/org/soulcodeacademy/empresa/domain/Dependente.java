@@ -1,6 +1,7 @@
 package org.soulcodeacademy.empresa.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Dependente {
