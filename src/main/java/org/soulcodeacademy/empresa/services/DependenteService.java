@@ -52,7 +52,7 @@ public class DependenteService {
         dependenteAtual.setIdade(dto.getIdade());
         Empregado responsavel = this.empregadoService.getEmpregado(dto.getIdResponsavel());
         dependenteAtual.setResponsavel(responsavel);
-        
+
         Dependente atualizado = this.dependenteRepository.save(dependenteAtual);
         return atualizado;
     }
