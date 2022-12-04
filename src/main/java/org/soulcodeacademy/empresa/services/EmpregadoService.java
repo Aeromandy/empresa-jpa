@@ -23,9 +23,6 @@ public class EmpregadoService {
     @Autowired
     private ProjetoService projetoService;
 
-    @Autowired
-    private DependenteService dependenteService;
-
     public List<Empregado> listar() {
 
         return this.empregadoRepository.findAll();

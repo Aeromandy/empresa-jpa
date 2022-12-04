@@ -1,6 +1,7 @@
 package org.soulcodeacademy.empresa.services;
 
 import org.soulcodeacademy.empresa.domain.Dependente;
+import org.soulcodeacademy.empresa.domain.Empregado;
 import org.soulcodeacademy.empresa.domain.Projeto;
 import org.soulcodeacademy.empresa.domain.dto.DependenteDTO;
 import org.soulcodeacademy.empresa.domain.dto.ProjetoDTO;
@@ -17,6 +18,9 @@ public class DependenteService {
 
     @Autowired
     private DependenteRepository dependenteRepository;
+
+    @Autowired
+    private EmpregadoService empregadoService;
 
     public List<Dependente> listarTodos(){
 
@@ -36,6 +40,8 @@ public class DependenteService {
 
     public Dependente salvar(DependenteDTO dto) {
         Dependente dependente = new Dependente(null, dto.getNome(), dto.getIdade());
+        Empregado responsavel = this.empregadoService.getEmpregado(dto.getIdResponsavel());
+        dependente.setResponsavel(responsavel);
         Dependente salvo = this.dependenteRepository.save(dependente);
         return salvo;
     }
@@ -44,6 +50,9 @@ public class DependenteService {
         Dependente dependenteAtual = this.getDependente(idDependente);
         dependenteAtual.setNome(dto.getNome());
         dependenteAtual.setIdade(dto.getIdade());
+        Empregado responsavel = this.empregadoService.getEmpregado(dto.getIdResponsavel());
+        dependenteAtual.setResponsavel(responsavel);
+        
         Dependente atualizado = this.dependenteRepository.save(dependenteAtual);
         return atualizado;
     }

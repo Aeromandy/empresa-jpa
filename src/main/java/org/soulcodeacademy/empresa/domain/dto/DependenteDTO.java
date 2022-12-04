@@ -10,6 +10,17 @@ public class DependenteDTO {
 
     private String nome;
 
+    public Integer getIdResponsavel() {
+        return idResponsavel;
+    }
+
+    public void setIdResponsavel(Integer idResponsavel) {
+        this.idResponsavel = idResponsavel;
+    }
+
+    @NotNull(message = "IdResponsavel é obrigatório")
+    private Integer idResponsavel;
+
     public Integer getIdDependente() {
         return idDependente;
     }
