@@ -5,6 +5,7 @@ import org.soulcodeacademy.empresa.domain.Endereco;
 import org.soulcodeacademy.empresa.domain.Projeto;
 import org.soulcodeacademy.empresa.domain.dto.EmpregadoDTO;
 import org.soulcodeacademy.empresa.repositories.EmpregadoRepository;
+import org.soulcodeacademy.empresa.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,7 @@ public class EmpregadoService {
         Optional<Empregado> empregado = this.empregadoRepository.findById(idEmpregado);
 
         if (empregado.isEmpty()) {
-            throw new RuntimeException("O empregado não foi encontrado!");
+            throw new RecursoNaoEncontradoError("O empregado não foi encontrado!");
         } else {
             return empregado.get();
         }

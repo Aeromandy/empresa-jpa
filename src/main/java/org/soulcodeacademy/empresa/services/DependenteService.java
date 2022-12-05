@@ -6,6 +6,7 @@ import org.soulcodeacademy.empresa.domain.Projeto;
 import org.soulcodeacademy.empresa.domain.dto.DependenteDTO;
 import org.soulcodeacademy.empresa.domain.dto.ProjetoDTO;
 import org.soulcodeacademy.empresa.repositories.DependenteRepository;
+import org.soulcodeacademy.empresa.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class DependenteService {
         Optional<Dependente> dependente = this.dependenteRepository.findById(idDependente);
 
         if (dependente.isEmpty()) {
-            throw new RuntimeException("Dependente não encontrado!");
+            throw new RecursoNaoEncontradoError("Dependente não encontrado!");
         } else {
             return dependente.get();
         }
